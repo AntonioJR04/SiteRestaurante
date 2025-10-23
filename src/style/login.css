@@ -1,0 +1,108 @@
+/* Container principal */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f5deb3, #fff8dc);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Card do formulário */
+.login-form {
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Título */
+.login-container h2 {
+  color: #3e2723;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Labels e inputs */
+.login-form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  color: #5d4037;
+  font-weight: 600;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #a0522d;
+}
+
+/* Checkbox */
+.checkbox-lembrarme {
+  margin-right: 8px;
+  accent-color: #a0522d;
+}
+
+.login-form input[type="checkbox"] + label {
+  color: #5d4037;
+}
+
+/* Botão de login */
+.login-form button {
+  background-color: #a0522d;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #8b4513;
+  transform: translateY(-2px);
+}
+
+/* Texto "Não possui conta?" */
+.login-form div {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #5d4037;
+}
+
+.login-form h6 {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .login-form {
+    padding: 2rem;
+    width: 90%;
+  }
+
+  .login-container h2 {
+    font-size: 1.5rem;
+  }
+}
