@@ -1,50 +1,50 @@
-<<<<<<< HEAD
-import '../style/login.css'
 
-export default function Login() {
+// import '../style/login.css'
 
-  return (
-    <div className="login-container">
-      <form className="login-form">
-        <h2>Entrar</h2>
+// export default function Login() {
 
-        <label>
-          Usuário:
-          <input 
-            placeholder="Digite seu e-mail ou telefone" 
-            type="text" 
-            name="username" 
-            required 
-          />
-        </label>
+//   return (
+//     <div className="login-container">
+//       <form className="login-form">
+//         <h2>Entrar</h2>
 
-        <label>
-          Senha:
-          <input 
-            placeholder="Digite sua senha" 
-            type="password" 
-            name="password" 
-            required 
-          />
-        </label>
+//         <label>
+//           Usuário:
+//           <input 
+//             placeholder="Digite seu e-mail ou telefone" 
+//             type="text" 
+//             name="username" 
+//             required 
+//           />
+//         </label>
 
-        <div className="lembrar">
-          <input className="checkbox-lembrarme" type="checkbox" id="lembrar" />
-          <label htmlFor="lembrar">Lembrar-me</label>
-        </div>
+//         <label>
+//           Senha:
+//           <input 
+//             placeholder="Digite sua senha" 
+//             type="password" 
+//             name="password" 
+//             required 
+//           />
+//         </label>
 
-        <button type="submit">Login</button>
+//         <div className="lembrar">
+//           <input className="checkbox-lembrarme" type="checkbox" id="lembrar" />
+//           <label htmlFor="lembrar">Lembrar-me</label>
+//         </div>
 
-        <div className="signup-text">
-          <h6>Não possui conta?</h6>
-          <a href="/signup">Cadastre-se</a>
-        </div>
-      </form>
-      <div className="login-image"></div>
-    </div>
-  )
-}
-=======
+//         <button type="submit">Login</button>
+
+//         <div className="signup-text">
+//           <h6>Não possui conta?</h6>
+//           <a href="/signup">Cadastre-se</a>
+//         </div>
+//       </form>
+//       <div className="login-image"></div>
+//     </div>
+//   )
+// }
+
 import { useState } from "react";
 import "../style/login.css";
 import axios from 'axios';
@@ -142,4 +142,4 @@ export default function Login() {
     </div>
   );
 }
->>>>>>> joao-frontend
+

@@ -1,11 +1,7 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-<<<<<<< HEAD
-import "../style/carousel.css";
-=======
 import "../style/carousel.css"; // 👈 Import do CSS customizado
->>>>>>> joao-frontend
 
 export default function CarouselComponent() {
   return (
@@ -49,8 +45,4 @@ export default function CarouselComponent() {
       </Carousel>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> joao-frontend

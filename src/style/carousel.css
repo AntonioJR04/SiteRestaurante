@@ -1,22 +1,5 @@
 .carousel-wrapper {
   width: 100%;
-<<<<<<< HEAD
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.carousel-image {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-}
-
-.carousel-caption {
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  padding: 15px;
-}
-=======
   max-width: 1200px;
   margin: 0 auto;
   border-radius: 20px;
@@ -98,4 +81,3 @@
   border-radius: 50%;
   transition: background-color 0.3s ease;
 }
->>>>>>> joao-frontend
