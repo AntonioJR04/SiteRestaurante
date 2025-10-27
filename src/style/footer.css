@@ -1,0 +1,90 @@
+.footer {
+  background-color: #fff;
+  color: #222;
+  width: 100%;
+  box-shadow: 0 -2px 15px rgba(0,0,0,0.05);
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0 1rem 0;
+}
+
+/* ===== CONTEÚDO PRINCIPAL ===== */
+.footer-content {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-logo h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.footer-logo p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* ===== LINKS ===== */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* ===== REDES SOCIAIS ===== */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-socials a {
+  color: #222;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.footer-socials a:hover {
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* ===== PARTE INFERIOR ===== */
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+}
