@@ -1,0 +1,83 @@
+.carousel-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Garante que TODAS as imagens tenham o mesmo tamanho */
+.carousel-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover; /* corta a imagem mantendo proporção */
+  filter: brightness(85%);
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+.carousel-item:hover .carousel-image {
+  transform: scale(1.05);
+  filter: brightness(95%);
+}
+
+/* Legenda elegante */
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  padding: 20px 30px;
+  border-radius: 15px;
+  transition: background 0.3s ease;
+}
+
+.carousel-caption h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-caption p {
+  font-size: 1.1rem;
+  color: #eee;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .carousel-image {
+    height: 400px;
+  }
+
+  .carousel-caption h3 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-image {
+    height: 300px;
+  }
+
+  .carousel-caption {
+    padding: 10px 15px;
+  }
+
+  .carousel-caption h3 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.9rem;
+  }
+}
+.carousel-indicators li {
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}

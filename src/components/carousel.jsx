@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../style/carousel.css";
+import "../style/carousel.css"; // 👈 Import do CSS customizado
 
 export default function CarouselComponent() {
   return (
