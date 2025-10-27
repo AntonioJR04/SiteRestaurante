@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 /* ==== CONFIGURAÇÕES GERAIS ==== */
@@ -216,4 +217,8 @@ button:hover {
   section {
     padding: 60px 20px;
   }
+=======
+body{
+    background-color: #694100;
+>>>>>>> joao-frontend
 }

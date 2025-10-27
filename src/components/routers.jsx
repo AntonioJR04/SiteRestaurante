@@ -3,6 +3,13 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/homePage.jsx";
 import Login from "../pages/login.jsx";
 import SignUp from "../pages/signUp.jsx";
+<<<<<<< HEAD
+=======
+import Profile from "../pages/profile.jsx";
+import Pratos from "../pages/prato.jsx";
+import Bebidas from "../pages/drink.jsx";
+import Reservas from "../pages/reserva.jsx";
+>>>>>>> joao-frontend
 
 export default function Routers() {
   return (
@@ -13,9 +20,20 @@ export default function Routers() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+<<<<<<< HEAD
+=======
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/pratos" element={<Pratos />} />
+          <Route path="/bebidas" element={<Bebidas />} />
+          <Route path="/reservas" element={<Reservas />} />
+>>>>>>> joao-frontend
 
         </Routes>
       </div>
     </>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> joao-frontend

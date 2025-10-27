@@ -1,0 +1,135 @@
+/* === Layout principal === */
+.produto-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  margin-top: 3.5rem;
+}
+
+/* === Card do produto === */
+.produto-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.produto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* === Imagem do produto === */
+.produto-imagem {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.produto-card:hover .produto-imagem {
+  transform: scale(1.05);
+}
+
+/* === Detalhes === */
+.produto-detalhes {
+  padding: 1rem 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+}
+
+.produto-nome {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.produto-descricao {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-width: 90%;
+}
+
+.produto-preco {
+  color: #008000;
+  font-weight: bold;
+  font-size: 1.05rem;
+  margin-top: 0.3rem;
+}
+
+/* === Botão comprar === */
+.produto-botao-comprar {
+  margin-top: 0.6rem;
+  background: linear-gradient(90deg, #ff6600, #ff8800);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 6px rgba(255, 102, 0, 0.3);
+}
+
+.produto-botao-comprar:hover {
+  background: linear-gradient(90deg, #e65c00, #ff6600);
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(255, 102, 0, 0.35);
+}
+
+/* === Estados === */
+.produto-loading,
+.produto-erro,
+.produto-vazio {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+}
+
+.produto-erro {
+  color: #d00000;
+}
+
+/* === Responsividade === */
+@media (max-width: 768px) {
+  .produto-imagem {
+    height: 180px;
+  }
+
+  .produto-nome {
+    font-size: 1.1rem;
+  }
+
+  .produto-descricao {
+    font-size: 0.85rem;
+  }
+
+  .produto-botao-comprar {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .produto-container {
+    padding: 1rem;
+    gap: 1.2rem;
+  }
+
+  .produto-imagem {
+    height: 160px;
+  }
+
+  .produto-card {
+    border-radius: 12px;
+  }
+}
