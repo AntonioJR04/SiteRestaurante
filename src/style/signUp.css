@@ -60,7 +60,7 @@
 
 .input-group input:focus {
   outline: none;
-  border-color: #694100;
+  border-color: header;
   background: #fff;
   box-shadow: 0 0 0 3px rgba(242, 140, 40, 0.15);
 }
@@ -89,7 +89,7 @@
 /* Botão principal */
 .btn-primary {
   width: 100%;
-  background: #694100;
+  background: header;
   color: #fff;
   border: none;
   padding: 12px;
@@ -102,7 +102,7 @@
 }
 
 .btn-primary:hover {
-  background: #694100;
+  background: header;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(242, 140, 40, 0.25);
 }
@@ -116,7 +116,7 @@
 }
 
 .login-text a {
-  color: #694100;
+  color: header;
   text-decoration: none;
   font-weight: 500;
 }

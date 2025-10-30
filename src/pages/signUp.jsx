@@ -137,6 +137,7 @@ export default function SignUp() {
           Já tem uma conta? <a href="/login">Entrar</a>
         </p>
       </form>
+      <div className="login-image"></div>
     </div>
   );
 }
