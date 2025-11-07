@@ -25,7 +25,7 @@ export default function Header() {
               Reservar
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="#" onClick={(e) => { e.preventDefault(); navigate("/pratos"); }}>
               Pratos
             </a>
@@ -34,7 +34,7 @@ export default function Header() {
             <a href="#" onClick={(e) => { e.preventDefault(); navigate("/bebidas"); }}>
               Bebidas
             </a>
-          </li>
+          </li> */}
         </ul>
       </nav>
 

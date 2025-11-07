@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import CarouselComponent from "../components/carousel.jsx";
 import Header from "../components/header.jsx";
 import Footer from "../components/footer.jsx";
 import "../style/homePage.css"
+import Pratos from "../components/pratos.jsx";
+import Produto from "../components/produto.jsx";
 
 export default function HomePage() {
+  const [typeFood, setTypeFood] = useState("todos");
   return (
     <div>
       <Header />
@@ -19,23 +22,12 @@ export default function HomePage() {
           <h2 className="sec-title">Cardápio Digital</h2>
           <div className="cardapio-list">
             <div className="cardapio-item">
-              <h3 className="item-nome">Macarrão</h3>
-              <p className="item-descricao">
-                Delicioso macarrão com molho artesanal. <strong>R$ 30,90</strong>
-              </p>
-            </div>
-            <div className="cardapio-item">
-              <h3 className="item-nome">Pizza Margherita</h3>
-              <p className="item-descricao">
-                Tradicional pizza com tomate e manjericão. <strong>R$ 39,90</strong>
-              </p>
-            </div>
+              <button className="produto-botao-comprar" onClick={() => setTypeFood("todos")}>Pratos</button>
+              <button className="produto-botao-comprar" onClick={() => setTypeFood("bebidas")}>Bebidas</button>
 
-            <div className="cardapio-item">
-              <h3 className="item-nome">Hambúrguer Artesanal</h3>
-              <p className="item-descricao">
-                Pão brioche, carne 180g e molho especial. <strong>R$ 24,90</strong>
-              </p>
+              {typeFood === "todos" ? (
+                <Produto />
+              ) : (<Produto categoria={typeFood} />)}
             </div>
           </div>
         </section>
