@@ -8,29 +8,21 @@ export default function Reserva() {
   const [selectedHorario, setSelectedHorario] = useState("");
   const [mesasOcupadas, setMesasOcupadas] = useState([]);
 
+  const id_cliente = Number(localStorage.getItem("idCliente"));
+
   const mesas = [1,2,3,4,5,6,7,8,9,10];
-  //intervalo de 1h30 em 1h30
+
   const gerarHorarios = () => {
     const horarios = [];
     let hora = 10;
-    let minuto = 0;
 
-    while (hora < 24) {
-      horarios.push(`${String(hora).padStart(2,"0")}:${String(minuto).padStart(2,"0")}`);
-
-      minuto += 30;
-      if (minuto >= 60) {
-        minuto = 0;
-        hora++;
-      }
+    while (hora < 23) {
+      horarios.push(`${String(hora).padStart(2,"0")}:00`);
+      horarios.push(`${String(hora).padStart(2,"0")}:30`);
       hora++;
     }
-
     return horarios;
   };
-
-  const horariosDisponiveis = gerarHorarios();
-
 
   useEffect(() => {
     if (!selectedData || !selectedHorario) return;
@@ -52,12 +44,11 @@ export default function Reserva() {
       });
   }, [selectedData, selectedHorario]);
 
-
   async function reservarMesa() {
-    const id_cliente = Number(localStorage.getItem("userId"));
 
     if (!id_cliente) {
-      alert("Faça login primeiro.");
+      alert("Faça login primeiro!");
+      window.location.href = "/login";
       return;
     }
 
@@ -66,17 +57,15 @@ export default function Reserva() {
       return;
     }
 
-    const reserva = {
-      data_reserva: selectedData,
-      hora_reserva: selectedHorario,
-      mesa_numero: selectedMesa,
-      id_cliente
-    };
-
     const response = await fetch("http://localhost:3000/reservas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(reserva),
+      body: JSON.stringify({
+        data_reserva: selectedData,
+        hora_reserva: selectedHorario,
+        mesa_numero: selectedMesa,
+        id_cliente
+      }),
     });
 
     const data = await response.json();
@@ -87,34 +76,27 @@ export default function Reserva() {
     }
 
     alert("Reserva confirmada!");
-    //console.log("id", id_cliente);
   }
-
-  
-
 
   return (
     <div>
       <Header />
-
       <div className="reserva-container">
 
-        <h2>Escolha a data e horário:</h2>
+        <h2>Escolha a data e horário</h2>
 
         <input
           type="date"
-          className="data-input"
           value={selectedData}
           onChange={(e) => setSelectedData(e.target.value)}
         />
 
         <select
-          className="hora-input"
           value={selectedHorario}
           onChange={(e) => setSelectedHorario(e.target.value)}
         >
-          <option value="">Selecione o horário</option>
-          {horariosDisponiveis.map(h => (
+          <option value="">Selecione</option>
+          {gerarHorarios().map(h => (
             <option key={h} value={h}>{h}</option>
           ))}
         </select>
@@ -122,28 +104,22 @@ export default function Reserva() {
         <h3>Selecione sua mesa</h3>
 
         <div className="mesa-container">
-          {mesas.map((mesa) => {
-            const ocupado = mesasOcupadas.includes(mesa);
-
-            return (
-              <button
-                key={mesa}
-                disabled={ocupado}
-                className={`mesa-btn 
-                  ${selectedMesa === mesa ? "selecionada" : ""} 
-                  ${ocupado ? "ocupada" : ""}
-                `}
-                onClick={() => setSelectedMesa(mesa)}
-              >
-                {mesa}
-              </button>
-            );
-          })}
+          {mesas.map((mesa) => (
+            <button
+              key={mesa}
+              disabled={mesasOcupadas.includes(mesa)}
+              className={`mesa-btn ${selectedMesa === mesa ? "selecionada" : ""}`}
+              onClick={() => setSelectedMesa(mesa)}
+            >
+              {mesa}
+            </button>
+          ))}
         </div>
 
         <button className="confirmar-btn" onClick={reservarMesa}>
           Reservar Mesa
         </button>
+
       </div>
     </div>
   );
