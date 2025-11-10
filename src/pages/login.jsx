@@ -6,7 +6,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const BE_PORT = import.meta.env.VITE_BE_PORT; 
+  const BE_PORT = import.meta.env.VITE_BE_PORT;
 
   async function tryLogin(event) {
     event.preventDefault();
@@ -18,11 +18,11 @@ export default function Login() {
       });
 
       if (response.data.success) {
-        localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("idCliente", response.data.idCliente);
+        localStorage.setItem("userName", response.data.userName);
         localStorage.setItem("userType", response.data.userType);
 
-        alert("Login realizado com sucesso!");
-        window.location.href = "/"; 
+        window.location.href = "/";
       } else {
         alert(response.data.message || "Falha no login.");
       }
@@ -46,8 +46,8 @@ export default function Login() {
         <div className="input-group">
           <label>E-mail</label>
           <input
+          placeholder="Digite seu e-mail"
             type="email"
-            placeholder="Digite seu e-mail"
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
             required
@@ -57,8 +57,8 @@ export default function Login() {
         <div className="input-group password-field">
           <label>Senha</label>
           <input
+          placeholder="Digite sua senha"
             type={showPassword ? "text" : "password"}
-            placeholder="Digite sua senha"
             value={userPassword}
             onChange={(e) => setUserPassword(e.target.value)}
             required
@@ -73,9 +73,7 @@ export default function Login() {
           </button>
         </div>
 
-        <button type="submit" className="btn-primary">
-          Entrar
-        </button>
+        <button type="submit" className="btn-primary">Entrar</button>
 
         <p className="signup-text">
           Não possui conta? <a href="/signup">Cadastre-se</a>
