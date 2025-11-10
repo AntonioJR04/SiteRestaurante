@@ -3,7 +3,6 @@ import CarouselComponent from "../components/carousel.jsx";
 import Header from "../components/header.jsx";
 import Footer from "../components/footer.jsx";
 import "../style/homePage.css"
-import Pratos from "../components/pratos.jsx";
 import Produto from "../components/produto.jsx";
 
 export default function HomePage() {

@@ -5,6 +5,7 @@ import "../style/header.css";
 
 export default function Header() {
   const navigate = useNavigate();
+  const userName = localStorage.getItem("userName");
 
   return (
     <header className="header-glass">
@@ -38,8 +39,9 @@ export default function Header() {
         </ul>
       </nav>
 
-      <div className="profile-icon" onClick={() => navigate("/profile")}>
-        <FaPizzaSlice size={24} color="#694100" />
+      <div className="profile-container" onClick={() => navigate("/profile")}>
+        <FaPizzaSlice className="icone-profile" size={30} color="#E60023" />
+        <p>Olá, {userName || "Visitante"}</p>
       </div>
     </header>
   );
