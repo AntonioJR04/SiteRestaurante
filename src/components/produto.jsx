@@ -7,14 +7,12 @@ export default function Produto({ categoria = "pratos" }) {
   const [produtos, setProdutos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
-
-  // Função para buscar produtos do backend
+  const id_cliente = Number(localStorage.getItem("userId"));
   async function carregarProdutos() {
     try {
       setLoading(true);
       setErro("");
 
-      // Faz requisição ao backend conforme a categoria
       const response = await axios.get(`http://localhost:3000/${categoria}`);
 
       if (response.data.success && Array.isArray(response.data.produtos)) {
@@ -30,18 +28,22 @@ export default function Produto({ categoria = "pratos" }) {
     }
   }
 
-  // Executa uma vez ao montar o componente
   useEffect(() => {
     carregarProdutos();
   }, [categoria]);
 
-  // Função para o botão "Comprar"
   function handleComprar(produto) {
-    console.log("Produto selecionado:", produto);
-    alert(`Você selecionou: ${produto.nome_prato}`);
+    if (!id_cliente) {
+      alert("Faça login primeiro.");
+      return;
+    }
+    else{
+      console.log("Produto selecionado:", produto);
+      alert(`Você selecionou: ${produto.nome_prato || produto.nome_bebida}`);
+      //console.log("id", id_cliente);
+    }
   }
 
-  // Exibição condicional
   if (loading) {
     return <p className="produto-loading">Carregando {categoria}...</p>;
   }
