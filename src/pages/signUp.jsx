@@ -13,6 +13,7 @@ export default function SignUp() {
   const [userPassword, setUserPassword] = useState("");
   const [userConfirmPassword, setUserConfirmPassword] = useState("");
 
+  const id_cliente = Number(localStorage.getItem("userId"));
 
   async function trySignUp(event) {
     event.preventDefault();
@@ -33,8 +34,7 @@ export default function SignUp() {
  
     if (response.data.success) {
         alert(response.data.message);
-        // Aqui você pode redirecionar, ex:
-        // window.location.href = "/dashboard";
+        window.location.href = "/login";
       }
     }
     catch(error){
