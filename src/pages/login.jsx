@@ -1,43 +1,39 @@
 import { useState } from "react";
+import axios from "axios";
 import "../style/login.css";
-import axios from 'axios';
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const BE_PORT = import.meta.env.VITE_BE_PORT; 
 
   async function tryLogin(event) {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post(`${BE_PORT}/login`, {
         userEmail,
-        userPassword
+        userPassword,
       });
 
-      // Se o status for 200, deu certo
       if (response.data.success) {
-        alert(response.data.message);
-        // Aqui você pode redirecionar, ex:
-        // window.location.href = "/dashboard";
+        localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("userType", response.data.userType);
+
+        alert("Login realizado com sucesso!");
+        window.location.href = "/"; 
+      } else {
+        alert(response.data.message || "Falha no login.");
       }
 
     } catch (error) {
-      // 👇 Axios joga erros 4xx/5xx aqui
-      if (error.response) {
-        const { status, data } = error.response;
+      console.error("Erro ao fazer login:", error);
 
-        if (status === 401 || status === 404) {
-          alert("Tente novamente.");
-        } else if (data?.message) {
-          alert(data.message);
-        } else {
-          alert("Erro desconhecido ao tentar fazer login.");
-        }
+      if (error.response?.data?.message) {
+        alert(error.response.data.message);
       } else {
-        console.error("Erro de conexão com o servidor:", error);
-        alert("Erro ao tentar fazer login. Verifique a conexão com o servidor.");
+        alert("Erro ao tentar fazer login.");
       }
     }
   }
@@ -50,11 +46,10 @@ export default function Login() {
         <div className="input-group">
           <label>E-mail</label>
           <input
-            type="text"
+            type="email"
             placeholder="Digite seu e-mail"
-            id="userEmail"
             value={userEmail}
-            onChange={(event) => setUserEmail(event.target.value)}
+            onChange={(e) => setUserEmail(e.target.value)}
             required
           />
         </div>
@@ -64,11 +59,11 @@ export default function Login() {
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Digite sua senha"
-            id="password"
             value={userPassword}
-            onChange={(event) => setUserPassword(event.target.value)}
+            onChange={(e) => setUserPassword(e.target.value)}
             required
           />
+
           <button
             type="button"
             className="toggle-password"
@@ -76,12 +71,6 @@ export default function Login() {
           >
             {showPassword ? "🙈" : "👁️"}
           </button>
-        </div>
-
-        <div className="remember">
-          <input type="checkbox" id="lembrar" />
-          <label htmlFor="lembrar">Lembrar-me</label>
-          <a href="#">Esqueceu a senha?</a>
         </div>
 
         <button type="submit" className="btn-primary">
