@@ -1,0 +1,110 @@
+
+.reserva-container {
+  max-width: 750px;
+  margin: 80px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* TÍTULOS */
+.reserva-container h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.reserva-container h3 {
+  font-size: 18px;
+  margin-top: 25px;
+}
+
+/* INPUTS */
+input[type="date"],
+select {
+  padding: 10px 12px;
+  margin: 10px;
+  width: 220px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #bdbdbd;
+  background: #fafafa;
+  transition: border 0.15s;
+}
+
+input[type="date"]:focus,
+select:focus {
+  border-color: #0077ff;
+  outline: none;
+}
+
+/* GRID DAS MESAS */
+.mesa-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* BOTÕES DAS MESAS */
+.mesa-btn {
+  padding: 18px 0;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mesa-btn:hover {
+  background-color: #e5e5e5;
+}
+
+/* MESA SELECIONADA */
+.mesa-btn.selecionada {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+/* MESA OCUPADA */
+.mesa-btn:disabled {
+  background-color: #7a7a7a;
+  color: #2b2929;
+  cursor: not-allowed;
+}
+
+/* BOTÃO CONFIRMAR */
+.confirmar-btn {
+  margin-top: 30px;
+  padding: 12px 28px;
+  background: #008000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.confirmar-btn:hover {
+  background: #006600;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .mesa-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  input[type="date"],
+  select {
+    width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .mesa-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
