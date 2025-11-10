@@ -149,7 +149,67 @@ app.get("/reservas", async (req, res) => {
   }
 });
 
+app.post("/reservas", async (req, res) => {
+  const { data_reserva, hora_reserva, mesa_numero, id_cliente } = req.body;
 
+  if (!data_reserva || !hora_reserva || !mesa_numero || !id_cliente)
+    return res.status(400).json({ success: false, message: "Campos obrigatórios." });
+
+  try {
+    // Verificar se a mesa já está ocupada no horário
+    const existe = await db.query(
+      "SELECT 1 FROM reserva WHERE data_reserva = $1 AND horario_reserva = $2 AND id_mesa = $3",
+      [data_reserva, hora_reserva, mesa_numero]
+    );
+
+    if (existe.rows.length > 0)
+      return res.status(409).json({ success: false, message: "Mesa ocupada." });
+
+    // Verificar FK do cliente
+    const cliente = await db.query(
+      "SELECT 1 FROM cliente WHERE id_cliente = $1",
+      [id_cliente]
+    );
+
+    if (cliente.rows.length === 0)
+      return res.status(400).json({ success: false, message: "Cliente inválido." });
+
+    // Criar reserva
+    const result = await db.query(
+      "INSERT INTO reserva (data_reserva, horario_reserva, id_mesa, id_cliente) VALUES ($1, $2, $3, $4) RETURNING id_reserva",
+      [data_reserva, hora_reserva, mesa_numero, id_cliente]
+    );
+
+    return res.status(201).json({ success: true, id: result.rows[0].id_reserva });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false });
+  }
+});
+
+
+app.post("/reservas/disponibilidade", async (req, res) => {
+  const { data_reserva, hora_reserva } = req.body;
+
+  if (!data_reserva || !hora_reserva)
+    return res.status(400).json({ success: false });
+
+  try {
+    const result = await db.query(
+      "SELECT id_mesa FROM reserva WHERE data_reserva = $1 AND horario_reserva = $2",
+      [data_reserva, hora_reserva]
+    );
+
+    const mesasOcupadas = result.rows.map(r => r.id_mesa);
+
+    res.json({ success: true, mesasOcupadas });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
