@@ -1,0 +1,139 @@
+/* BACKDROP */
+.bag-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2000;
+}
+
+/* MODAL LATERAL */
+.bag-modal {
+  width: 380px;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(18px);
+  height: 100%;
+  padding: 25px;
+  animation: slideIn 0.3s ease forwards;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+/* CABEÇALHO */
+.bag-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.close-icon {
+  cursor: pointer;
+  font-size: 20px;
+  transition: 0.2s;
+}
+
+.close-icon:hover {
+  transform: scale(1.2);
+  color: #e60023;
+}
+
+/* ITENS DA SACOLA */
+.bag-items {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.bag-empty {
+  text-align: center;
+  margin-top: 30px;
+  color: #555;
+}
+
+.bag-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+
+.bag-item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* INFO + QUANTIDADE */
+.bag-info {
+  flex: 1;
+}
+
+.bag-info h4 {
+  font-size: 1rem;
+  margin-bottom: 3px;
+}
+
+.bag-qtd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bag-qtd svg {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.bag-qtd svg:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.bag-trash {
+  cursor: pointer;
+  color: #e60023;
+  transition: 0.2s;
+}
+
+.bag-trash:hover {
+  transform: scale(1.15);
+}
+
+/* FOOTER */
+.bag-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 18px;
+}
+
+.bag-finalizar {
+  width: 100%;
+  margin-top: 15px;
+  background: #f4b400;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.bag-finalizar:hover {
+  background: #d99c00;
+}

@@ -69,7 +69,7 @@
 /* === Botão comprar === */
 .produto-botao-comprar {
   margin-top: 0.6rem;
-  background: linear-gradient(90deg, #ff6600, #ff8800);
+  background: linear-gradient(90deg, #f4b400, #f1b307);
   color: white;
   border: none;
   padding: 0.6rem 1.4rem;
@@ -117,6 +117,14 @@
     padding: 0.5rem 1.1rem;
     font-size: 0.9rem;
   }
+
+  .produto-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0rem;
+  margin-top: 3.5rem;
+}
 }
 
 @media (max-width: 480px) {

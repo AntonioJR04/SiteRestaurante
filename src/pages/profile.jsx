@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/header.jsx'
+import '../style/profile.css'
 
-export default function Cadastro() {
+export default function Profile() {
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({

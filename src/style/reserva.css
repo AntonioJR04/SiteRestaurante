@@ -1,0 +1,130 @@
+/* ====== CONTAINER PRINCIPAL ====== */
+.reserva-container {
+  max-width: 800px;
+  margin: 100px auto 60px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.reserva-container:hover {
+  transform: scale(1.01);
+}
+
+/* ====== TÍTULOS ====== */
+.reserva-container h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.reserva-container h3 {
+  font-size: 1.5rem;
+  color: #444;
+  margin: 40px 0 20px 0;
+  font-weight: 500;
+}
+
+/* ====== CAMPOS DE DATA E HORÁRIO ====== */
+.reserva-container input[type="date"],
+.reserva-container select {
+  width: 250px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 8px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.reserva-container input[type="date"]:focus,
+.reserva-container select:focus {
+  border-color: #f28c28;
+  outline: none;
+  box-shadow: 0 0 6px rgba(242, 140, 40, 0.3);
+}
+
+/* ====== CONTAINER DE MESAS ====== */
+.mesa-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* ====== BOTÕES DE MESAS ====== */
+.mesa-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #f4f4f4;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mesa-btn:hover {
+  background-color: #f28c28;
+  color: white;
+  transform: scale(1.1);
+}
+
+.mesa-btn:disabled {
+  background-color: #ddd;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.mesa-btn.selecionada {
+  background-color: #f28c28;
+  color: white;
+  box-shadow: 0 0 12px rgba(242, 140, 40, 0.5);
+}
+
+/* ====== BOTÃO DE CONFIRMAR ====== */
+.confirmar-btn {
+  margin-top: 40px;
+  padding: 12px 40px;
+  background-color: #f28c28;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirmar-btn:hover {
+  background-color: #e27a10;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(226, 122, 16, 0.4);
+}
+
+/* ====== RESPONSIVIDADE ====== */
+@media (max-width: 600px) {
+  .reserva-container {
+    padding: 25px;
+  }
+
+  .reserva-container input[type="date"],
+  .reserva-container select {
+    width: 90%;
+  }
+
+  .mesa-btn {
+    width: 50px;
+    height: 50px;
+  }
+}

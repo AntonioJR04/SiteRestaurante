@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import CarouselComponent from "../components/carousel.jsx";
 import Header from "../components/header.jsx";
 import Footer from "../components/footer.jsx";
 import "../style/homePage.css"
+import Produto from "../components/produto.jsx";
+import BagModal from "../components/bagModal.jsx";
+
 
 export default function HomePage() {
+  const [typeFood, setTypeFood] = useState("todos");
+  const [bagIsOpen, setBagIsOpen] = useState(false);
+  const [bagItems, setBagItems] = useState([]);
+  const [msg, setMsg] = useState("");
+  function Message({ text }) {
+    if (!text) return null;
+
+    return (
+      <div className="msg-sucesso">
+        {text}
+      </div>
+    );
+  }
+
+
   return (
     <div>
-      <Header />
+      <Header onOpenBag={() => setBagIsOpen(true)} />
+      <Message text={msg} />
       <CarouselComponent />
       <div className="text-center mt-5">
         <h1>Bem-vindo ao Restaurante Sabor & Arte</h1>
@@ -19,86 +38,126 @@ export default function HomePage() {
           <h2 className="sec-title">Cardápio Digital</h2>
           <div className="cardapio-list">
             <div className="cardapio-item">
-              <h3 className="item-nome">Macarrão</h3>
-              <p className="item-descricao">
-                Delicioso macarrão com molho artesanal. <strong>R$ 30,90</strong>
-              </p>
-            </div>
-            <div className="cardapio-item">
-              <h3 className="item-nome">Pizza Margherita</h3>
-              <p className="item-descricao">
-                Tradicional pizza com tomate e manjericão. <strong>R$ 39,90</strong>
-              </p>
-            </div>
+              <div className="btn-cardapio">
+                <button className="produto-botao-comprar" onClick={() => setTypeFood("todos")}>Pratos</button>
+                <button className="produto-botao-comprar" onClick={() => setTypeFood("bebidas")}>Bebidas</button>
+              </div>
 
-            <div className="cardapio-item">
-              <h3 className="item-nome">Hambúrguer Artesanal</h3>
-              <p className="item-descricao">
-                Pão brioche, carne 180g e molho especial. <strong>R$ 24,90</strong>
-              </p>
+              {typeFood === "todos" ? (
+                <Produto
+                  addToBag={(item) => {
+                    setBagItems(prev => {
+                      const existe = prev.find(i => i.id === item.id);
+                      if (existe) {
+                        return prev.map(i => i.id === item.id ? { ...i, qtd: i.qtd + 1 } : i);
+                      }
+                      return [...prev, item];
+                    });
+                    setMsg("Item adicionado!");
+                    setTimeout(() => setMsg(""), 2500);
+                  }}
+                />
+
+              ) : (<Produto
+                categoria={typeFood}
+                addToBag={(item) => {
+                  setBagItems(prev => {
+                    const existe = prev.find(i => i.id === item.id);
+                    if (existe) {
+                      return prev.map(i => i.id === item.id ? { ...i, qtd: i.qtd + 1 } : i);
+                    }
+                    return [...prev, item];
+                  });
+                  setMsg("Item adicionado!");
+                  setTimeout(() => setMsg(""), 2500);
+
+                }}
+              />
+              )}
             </div>
           </div>
         </section>
-
-        <section id="reservas" className="sec-reservas">
-          <h2 className="sec-title">Reservas Online</h2>
-          <form className="form-reservas">
-
-            <label>Nome:</label><br />
-            <input type="text" placeholder="Seu nome" className="input-text" /><br />
-            <label>Data:</label><br />
-
-            <input type="date" className="input-date" /><br />
-            <label>Horário:</label><br />
-
-            <input type="time" className="input-time" /><br />
-
-            <button type=" submit" className="btn-reserva">Reservar</button>
-          </form>
-        </section>
-
 
         <section id="pedidos" className="sec-pedidos">
           <h2 className="sec-title">Faça seu pedido</h2>
+
           <p className="pedido-opcao">Escolha uma opção</p>
-          <div className="pedido-btns">
-            <button className="btn-pedido">Retirar</button>
-            <button className="btn-pedido">Entrega</button>
+
+          <div className="btn-cardapio">
+            <button className="produto-botao-comprar">Retirar</button>
+            <button className="produto-botao-comprar">Entrega</button>
           </div>
 
           <form className="form-pedidos">
-            <label>Nome:</label><br />
-            <input type="text" placeholder="Seu nome" className="input-text" /><br />
+            <div className="floating-label">
+              <input type="text" placeholder=" " required />
+              <label>Seu nome</label>
+            </div>
 
-            <label>Endereço (caso entrega):</label><br />
-            <input type="text" placeholder="Rua, número, bairro" className="input-text" /><br />
+            <div className="floating-label">
+              <input type="text" placeholder=" " />
+              <label>Endereço (caso entrega)</label>
+            </div>
 
-            <label>Pedido:</label><br />
-            <textarea placeholder="Descreva seu pedido" className="input-textarea"></textarea><br />
+            <div className="floating-label">
+              <textarea placeholder=" " required />
+              <label>Descreva seu pedido</label>
+            </div>
 
-            <button type="submit" className="btn-enviar">Enviar Pedido</button>
+            <button type="submit" className="produto-botao-comprar">Enviar Pedido</button>
           </form>
         </section>
 
+
+
         <section id="avaliacoes" className="sec-avaliacoes">
-          <h2 className="sec-title">Avalliações</h2>
-          <div className="avaliacoes-list">
-            <div className="avaliacao-item">
-              <p><strong>Junior:</strong>Provei o macarrão e automaticamente comecei a falar italiano. Muito bom</p> </div>
+          <h2 className="sec-title">Avaliações</h2>
 
-            <div className="avaliacao-item">
-              <p><strong>Anderson:</strong>Bom atendimento.</p> </div>
+          <div className="avaliacoes-container">
 
-            <div className="avaliacao-item">
-              <p><strong>João:</strong>A pizza estava maravilhosa</p></div>
+            <div className="avaliacao-card">
+              <div className="avaliacao-estrelas">⭐⭐⭐⭐⭐</div>
+              <p className="avaliacao-nome">Junior</p>
+              <p className="avaliacao-texto">
+                Provei o macarrão e automaticamente comecei a falar italiano. Muito bom!
+              </p>
+            </div>
 
-            <div className="avaliacao-item">
-              <p><strong>João:</strong>Ótimo atendimento! Recomendo</p></div>
+            <div className="avaliacao-card">
+              <div className="avaliacao-estrelas">⭐⭐⭐⭐</div>
+              <p className="avaliacao-nome">Anderson</p>
+              <p className="avaliacao-texto">Bom atendimento.</p>
+            </div>
+
+            <div className="avaliacao-card">
+              <div className="avaliacao-estrelas">⭐⭐⭐⭐⭐</div>
+              <p className="avaliacao-nome">João</p>
+              <p className="avaliacao-texto">A pizza estava maravilhosa!</p>
+            </div>
+
+            <div className="avaliacao-card">
+              <div className="avaliacao-estrelas">⭐⭐⭐⭐</div>
+              <p className="avaliacao-nome">Eduarda</p>
+              <p className="avaliacao-texto">Ambiente excelente e comida deliciosa.</p>
+            </div>
+
+            <div className="avaliacao-card">
+              <div className="avaliacao-estrelas">⭐⭐⭐⭐⭐</div>
+              <p className="avaliacao-nome">Marcelo</p>
+              <p className="avaliacao-texto">Melhor restaurante da cidade!</p>
+            </div>
 
           </div>
         </section>
+
       </div >
       <Footer />
+      <BagModal
+        isOpen={bagIsOpen}
+        onClose={() => setBagIsOpen(false)}
+        items={bagItems}
+        setItems={setBagItems}
+      />
 
     </div>
 

@@ -1,50 +1,3 @@
-
-// import '../style/login.css'
-
-// export default function Login() {
-
-//   return (
-//     <div className="login-container">
-//       <form className="login-form">
-//         <h2>Entrar</h2>
-
-//         <label>
-//           Usuário:
-//           <input 
-//             placeholder="Digite seu e-mail ou telefone" 
-//             type="text" 
-//             name="username" 
-//             required 
-//           />
-//         </label>
-
-//         <label>
-//           Senha:
-//           <input 
-//             placeholder="Digite sua senha" 
-//             type="password" 
-//             name="password" 
-//             required 
-//           />
-//         </label>
-
-//         <div className="lembrar">
-//           <input className="checkbox-lembrarme" type="checkbox" id="lembrar" />
-//           <label htmlFor="lembrar">Lembrar-me</label>
-//         </div>
-
-//         <button type="submit">Login</button>
-
-//         <div className="signup-text">
-//           <h6>Não possui conta?</h6>
-//           <a href="/signup">Cadastre-se</a>
-//         </div>
-//       </form>
-//       <div className="login-image"></div>
-//     </div>
-//   )
-// }
-
 import { useState } from "react";
 import "../style/login.css";
 import axios from 'axios';
@@ -53,38 +6,34 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const BE_PORT = import.meta.env.VITE_BE_PORT;
 
   async function tryLogin(event) {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post(`${BE_PORT}/login`, {
         userEmail,
-        userPassword
+        userPassword,
       });
 
-      // Se o status for 200, deu certo
       if (response.data.success) {
-        alert(response.data.message);
-        // Aqui você pode redirecionar, ex:
-        // window.location.href = "/dashboard";
+        localStorage.setItem("idCliente", response.data.idCliente);
+        localStorage.setItem("userName", response.data.userName);
+        localStorage.setItem("userType", response.data.userType);
+
+        window.location.href = "/";
+      } else {
+        alert(response.data.message || "Falha no login.");
       }
 
     } catch (error) {
-      // 👇 Axios joga erros 4xx/5xx aqui
-      if (error.response) {
-        const { status, data } = error.response;
+      console.error("Erro ao fazer login:", error);
 
-        if (status === 401 || status === 404) {
-          alert("Tente novamente.");
-        } else if (data?.message) {
-          alert(data.message);
-        } else {
-          alert("Erro desconhecido ao tentar fazer login.");
-        }
+      if (error.response?.data?.message) {
+        alert(error.response.data.message);
       } else {
-        console.error("Erro de conexão com o servidor:", error);
-        alert("Erro ao tentar fazer login. Verifique a conexão com o servidor.");
+        alert("Erro ao tentar fazer login.");
       }
     }
   }
@@ -139,6 +88,7 @@ export default function Login() {
           Não possui conta? <a href="/signup">Cadastre-se</a>
         </p>
       </form>
+      <div className="login-image"></div>
     </div>
   );
 }

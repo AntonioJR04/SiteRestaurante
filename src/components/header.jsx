@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaPizzaSlice } from "react-icons/fa";
+import { FaShoppingBag } from "react-icons/fa";
 import "../style/header.css";
 
-export default function Header() {
+export default function Header({ onOpenBag }) {
   const navigate = useNavigate();
+  const userName = localStorage.getItem("userName");
 
   return (
     <header className="header-glass">
       <div className="logo-area" onClick={() => navigate("/")}>
-        {/* <FaPizzaSlice size={26} color="#e60023" /> */}
         <h1>ComandaPro</h1>
       </div>
 
@@ -25,21 +25,15 @@ export default function Header() {
               Reservar
             </a>
           </li>
-          <li>
-            <a href="#" onClick={(e) => { e.preventDefault(); navigate("/pratos"); }}>
-              Pratos
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={(e) => { e.preventDefault(); navigate("/bebidas"); }}>
-              Bebidas
-            </a>
-          </li>
         </ul>
       </nav>
 
-      <div className="profile-icon" onClick={() => navigate("/profile")}>
-        <FaPizzaSlice size={24} color="#694100" />
+      <div className="profile-container">
+        <p onClick={()=> navigate("/profile")}>Olá, {userName || "Visitante"} </p>
+
+        <button className="sacola-btn" onClick={onOpenBag}>
+          <FaShoppingBag size={22} />
+        </button>
       </div>
     </header>
   );
