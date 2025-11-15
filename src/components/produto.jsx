@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/produtos.css";
 
-export default function Produto({ categoria = "pratos" }) {
+export default function Produto({ categoria = "pratos", addToBag }) {
   const [produtos, setProdutos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
@@ -39,7 +39,18 @@ export default function Produto({ categoria = "pratos" }) {
       return;
     }
 
-    alert(`Você selecionou: ${produto.nome_prato || produto.nome_bebida}`);
+    const nome = produto.nome_prato || produto.nome_bebida;
+    const preco = parseFloat(produto.preco_prato || produto.preco_bebida);
+    const img = produto.img_url_prato || produto.img_url_bebida;
+
+    addToBag({
+      id: produto.id_prato || produto.id_bebida,
+      nome,
+      preco,
+      img,
+      qtd: 1
+    });
+
   }
 
   if (loading) return <p className="produto-loading">Carregando...</p>;
